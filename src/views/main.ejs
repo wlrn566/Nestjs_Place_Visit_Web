@@ -4,21 +4,76 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link href="../css/main.css" rel="stylesheet">
-
-  <title>Document</title>
+  <link href="loading.css" rel="stylesheet">
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c75543be0f25c55db7a17e8ae64d96ad"></script>
+  
+  <title>main</title>
 </head>
-<body>
-  <p id="p">
-    <%= text1 %>
-  </p>
-</body>
-<script>
-  var newDIV = document.createElement("div");
-  newDIV.innerHTML = "<%= text2 %>";
 
-  var p = document.getElementById("p");
-  p.appendChild(newDIV);
+<body>
+
+  <div id="map" style="width:500px;height:500px;"></div>
+
+
+  <div class="layerPopup">
+      <div class="spinner"></div>
+  </div>
+
+
+</body>
+
+
+<script>
+  var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+  showSpinner();
+
+  // 위치 조회
+  navigator.geolocation.getCurrentPosition((position) => {
+
+    console.log("latitude : " + position.coords.latitude);
+    console.log("longitude : " + position.coords.longitude);
+
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    var options = { //지도를 생성할 때 필요한 기본 옵션
+      center: new kakao.maps.LatLng(latitude, longitude),
+      level: 3 //지도의 레벨(확대, 축소 정도)
+    };
+    var map = new kakao.maps.Map(container, options);
+
+    // 마커가 표시될 위치입니다 
+    var markerPosition  = new kakao.maps.LatLng(latitude, longitude);
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
+    // hideSpinner();
+  });
+
+  // 로딩바 보이기
+  function showSpinner() {
+    document.getElementsByClassName('layerPopup')[0].style.display='block';
+  }
+
+  // 로딩바 숨기기
+  function hideSpinner() {
+    document.getElementsByClassName('layerPopup')[0].style.display='none';
+  }
+</script>
+
+
+<script>
+  
+  // var newDIV = document.createElement("div");
+  // newDIV.innerHTML = "<%= text2 %>";
+
+  // var p = document.getElementById("p");
+  // p.appendChild(newDIV);
 </script>
 </html>

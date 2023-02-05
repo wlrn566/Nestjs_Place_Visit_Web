@@ -1,4 +1,6 @@
 import { Controller, Get, Render } from '@nestjs/common';
+// import { response } from 'express';
+// import fs = require('fs');
 
 @Controller('main')
 export class ViewContoller {
