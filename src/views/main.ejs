@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="title.css" rel="stylesheet">
+  <link href="card.css" rel="stylesheet">
   <link href="loading.css" rel="stylesheet">
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c75543be0f25c55db7a17e8ae64d96ad"></script>
   
@@ -12,13 +14,88 @@
 
 <body>
 
-  <div id="map" style="width:500px;height:500px;"></div>
+  <h2 class="title">나의 방문 소감</h2>
+  <div style="height: 20px"></div>
 
+  <section class="card-list">
+    <div class="card">
+      <header>
+        <h3>2022/02/26</h3>
+        <h2>Kong is King</h2>
+      </header>
+      <main>
+        <h4>Author</h4>
+        <h3>Kong TM</h3>
+      </main>
+    </div>
+    <div class="card">
+      <header>
+        <h3>2022/02/26</h3>
+        <h2>Kong is King</h2>
+      </header>
+      <main>
+        <h4>Author</h4>
+        <h3>Kong TM</h3>
+      </main>
+    </div>
+    <div class="card">
+      <header>
+        <h3>2022/02/26</h3>
+        <h2>Kong is King</h2>
+      </header>
+      <main>
+        <h4>Author</h4>
+        <h3>Kong TM</h3>
+      </main>
+    </div>
+    <div class="card">
+      <header>
+        <h3>2022/02/26</h3>
+        <h2>Kong is King</h2>
+      </header>
+      <main>
+        <h4>Author</h4>
+        <h3>Kong TM</h3>
+      </main>
+    </div>
+    <div class="card">
+      <header>
+        <h3>2022/02/26</h3>
+        <h2>Kong is King</h2>
+      </header>
+      <main>
+        <h4>Author</h4>
+        <h3>Kong TM</h3>
+      </main>
+    </div>
+    <div class="card">
+      <header>
+        <h3>2022/02/26</h3>
+        <h2>Kong is King</h2>
+      </header>
+      <main>
+        <h4>Author</h4>
+        <h3>Kong TM</h3>
+      </main>
+    </div>
+    <div class="card">
+      <header>
+        <h3>2022/02/26</h3>
+        <h2>Kong is King</h2>
+      </header>
+      <main>
+        <h4>Author</h4>
+        <h3>Kong TM</h3>
+      </main>
+    </div>
+  </section>
 
-  <div class="layerPopup">
-      <div class="spinner"></div>
-  </div>
+  <div style="height: 20px"></div>
+  <h2 class="title">주위 방문 소감들</h2>
+  <div style="height: 20px"></div>
 
+  <div id="map" style="height: 800px;"></div>
+  <div class="spinner"></div>
 
 </body>
 
@@ -53,17 +130,17 @@
     // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);
 
-    // hideSpinner();
+    hideSpinner();
   });
 
   // 로딩바 보이기
   function showSpinner() {
-    document.getElementsByClassName('layerPopup')[0].style.display='block';
+    document.getElementsByClassName('spinner')[0].style.display='block';
   }
 
   // 로딩바 숨기기
   function hideSpinner() {
-    document.getElementsByClassName('layerPopup')[0].style.display='none';
+    document.getElementsByClassName('spinner')[0].style.display='none';
   }
 </script>
 
