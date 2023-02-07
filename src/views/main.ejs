@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="sidenav.css" rel="stylesheet">
   <link href="title.css" rel="stylesheet">
   <link href="card.css" rel="stylesheet">
   <link href="loading.css" rel="stylesheet">
@@ -14,84 +15,93 @@
 
 <body>
 
-  <h2 class="title">나의 방문 소감</h2>
-  <div style="height: 20px"></div>
+  <div class="VirtualView">
+    <div class="hideMenuBody" id="hideMenuBodyId">
+      <div>Menu 1</div>
+      <div>Menu 2</div>
+      <div>Menu 3</div>
+      <div>Menu 4</div>
+      <div>Menu 5</div>
+      <div onclick="closeLeftMenu(); return false;">Close</div>
+    </div>
+  
+    <div class="circleBt" id="circleBt" onclick="showLeftMenu(this); return false;">
+      <div style="margin-top: 13px;"></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <h2 class="title">나의 방문 기록</h2>
 
   <section class="card-list">
     <div class="card">
       <header>
         <h3>2022/02/26</h3>
-        <h2>Kong is King</h2>
+        <h2>image</h2>
       </header>
       <main>
-        <h4>Author</h4>
-        <h3>Kong TM</h3>
+        <h3>text</h3>
       </main>
     </div>
     <div class="card">
       <header>
         <h3>2022/02/26</h3>
-        <h2>Kong is King</h2>
+        <h2>image</h2>
       </header>
       <main>
-        <h4>Author</h4>
-        <h3>Kong TM</h3>
+        <h3>text</h3>
       </main>
     </div>
     <div class="card">
       <header>
         <h3>2022/02/26</h3>
-        <h2>Kong is King</h2>
+        <h2>image</h2>
       </header>
       <main>
-        <h4>Author</h4>
-        <h3>Kong TM</h3>
+        <h3>text</h3>
       </main>
     </div>
     <div class="card">
       <header>
         <h3>2022/02/26</h3>
-        <h2>Kong is King</h2>
+        <h2>image</h2>
       </header>
       <main>
-        <h4>Author</h4>
-        <h3>Kong TM</h3>
+        <h3>text</h3>
       </main>
     </div>
     <div class="card">
       <header>
         <h3>2022/02/26</h3>
-        <h2>Kong is King</h2>
+        <h2>image</h2>
       </header>
       <main>
-        <h4>Author</h4>
-        <h3>Kong TM</h3>
+        <h3>text</h3>
       </main>
     </div>
     <div class="card">
       <header>
         <h3>2022/02/26</h3>
-        <h2>Kong is King</h2>
+        <h2>image</h2>
       </header>
       <main>
-        <h4>Author</h4>
-        <h3>Kong TM</h3>
+        <h3>text</h3>
       </main>
     </div>
     <div class="card">
       <header>
         <h3>2022/02/26</h3>
-        <h2>Kong is King</h2>
+        <h2>image</h2>
       </header>
       <main>
-        <h4>Author</h4>
-        <h3>Kong TM</h3>
+        <h3>text</h3>
       </main>
     </div>
   </section>
 
   <div style="height: 20px"></div>
-  <h2 class="title">주위 방문 소감들</h2>
+  <h2 class="title">주변 방문 기록</h2>
   <div style="height: 20px"></div>
 
   <div id="map" style="height: 800px;"></div>
@@ -146,6 +156,27 @@
 
 
 <script>
+
+ 
+	function showLeftMenu(){
+		var circleBtObj = document.getElementById('circleBt');
+		var leftMenuObj = document.getElementById('hideMenuBodyId');
+		circleBtObj.style['display'] = "none";
+		leftMenuObj.style['transform'] = "translate(0px, 0px)";
+		
+		leftMenuObj.style['msTransform'] = "translate(0px, 0px)";
+		leftMenuObj.style['mozTransform'] = "translate(0px, 0px)";
+		leftMenuObj.style['webkitTransform'] = "translate(0px, 0px)";
+		leftMenuObj.style['oTransform'] = "translate(0px, 0px)";
+	}
+
+	function closeLeftMenu() {
+		var circleBtObj = document.getElementById('circleBt');
+		var leftMenuObj = document.getElementById('hideMenuBodyId');
+
+		circleBtObj.style['display'] = "block";
+		leftMenuObj.removeAttribute("style");
+	}
   
   // var newDIV = document.createElement("div");
   // newDIV.innerHTML = "<%= text2 %>";
