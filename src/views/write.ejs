@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c75543be0f25c55db7a17e8ae64d96ad"></script>
+  
+  <title>방문</title>
+</head>
+
+<body>
+
+  <h2>장소</h2>
+  <input type="text", id="place">
+  <h2>방문일</h2>
+  <input type="date", id="date">
+  <h2>방문소감</h2>
+  <textarea id="review" cols="30" rows="5" maxlength="30" placeholder="30자 이내로 작성해주세요." onkeyup="count(this)"></textarea>
+  <span id="counter">0 / 30</span>
+
+  <button id="finishBtn" onclick=post()>작성완료</button>
+
+  <!-- <div id="map" style="height: 800px;"></div>
+  <div class="spinner"></div> -->
+
+</body>
+
+<script>
+  function count(text) {
+    var countText = text.value.length; // 글자 수
+    document.getElementById('counter').innerHTML = countText + " / 30";
+  }
+
+</script>
+
+<script>
+  function post() {
+    var place = document.getElementById("place");
+    var date = document.getElementById("date");
+    var review = document.getElementById("review");
+
+    const placeValue = place.value;
+    const dataValue = date.value;
+    const reviewValue = review.value;
+
+    // json 으로 보내기
+    data = {
+      "place": placeValue,
+      "date": dataValue,
+      "review": reviewValue
+    };
+
+    console.log(JSON.stringify({data}));
+
+    // var req = new XMLHttpRequest(); // XMLHttpRequest 객체 생성
+
+    // // 초기화 (방식, url, 비동기여부)
+    // req.open("POST", "http://localhost:3000/place", true);
+
+    // //요청 해더
+    // req.setRequestHeader('Content-Type', 'application/json');
+
+    // req.onreadystatechange = function () {
+    //   if (req.readyState === XMLHttpRequest.DONE) {
+    //     if (req.status === 200 || 201) { // 응답코드가 200 또는 201(post)
+    //       console.log("성공");
+    //     } else {
+    //       console.log("실패");
+    //     }
+    //   }
+    // }
+
+    // // 요청
+    // req.send(data);
+
+    $.ajax({
+      url : "/place",
+      type : "post",
+      headers: 'Content-Type',
+      datatype : "json", // json
+      data: data, // body 값
+      success : function(data) {
+        // 입력값 초기화
+        place.value = null;
+        data.value = null;
+        review.value = null;
+        alert("등록 완료!");
+      },
+      error : function(req, status, error) {
+        console.log(req.responseJSON['message'])
+        alert("등록 실패");			
+      }
+    });
+  }
+</script>
+
+
+</html>

@@ -4,24 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="sidenav.css" rel="stylesheet">
-  <link href="title.css" rel="stylesheet">
-  <link href="card.css" rel="stylesheet">
-  <link href="loading.css" rel="stylesheet">
+
+  <link href="/main/sidenav.css" rel="stylesheet">
+  <link href="/main/title.css" rel="stylesheet">
+  <link href="/main/card.css" rel="stylesheet">
+  <link href="/main/loading.css" rel="stylesheet">
+
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c75543be0f25c55db7a17e8ae64d96ad"></script>
   
-  <title>main</title>
+  <title>방문</title>
 </head>
 
 <body>
 
-  <div class="VirtualView">
+  <button onclick=goToWritePage()>작성하기</button>
+
+  <!-- <div class="VirtualView">
     <div class="hideMenuBody" id="hideMenuBodyId">
-      <div>Menu 1</div>
-      <div>Menu 2</div>
-      <div>Menu 3</div>
-      <div>Menu 4</div>
-      <div>Menu 5</div>
+      <div id="writeBtn" onclick=goToWrtiePage()>작성하기</div>
+      <div>내 정보</div>
+      <div>로그아웃</div>
       <div onclick="closeLeftMenu(); return false;">Close</div>
     </div>
   
@@ -30,7 +32,7 @@
       <div></div>
       <div></div>
     </div>
-  </div>
+  </div> -->
 
   <h2 class="title">나의 방문 기록</h2>
 
@@ -156,8 +158,6 @@
 
 
 <script>
-
- 
 	function showLeftMenu(){
 		var circleBtObj = document.getElementById('circleBt');
 		var leftMenuObj = document.getElementById('hideMenuBodyId');
@@ -177,11 +177,11 @@
 		circleBtObj.style['display'] = "block";
 		leftMenuObj.removeAttribute("style");
 	}
-  
-  // var newDIV = document.createElement("div");
-  // newDIV.innerHTML = "<%= text2 %>";
 
-  // var p = document.getElementById("p");
-  // p.appendChild(newDIV);
+  function goToWritePage() {
+    // closeLeftMenu();
+    location.href='/view/place/new';
+  }
+  
 </script>
 </html>

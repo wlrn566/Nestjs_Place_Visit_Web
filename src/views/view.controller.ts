@@ -2,11 +2,17 @@ import { Controller, Get, Render } from '@nestjs/common';
 // import { response } from 'express';
 // import fs = require('fs');
 
-@Controller('main')
+@Controller('view')
 export class ViewContoller {
-  @Get()
+  @Get('main')
   @Render('main.ejs')
-  async view() {
-    return { text1: '여기여기1', text2: '여기여기2' };
+  async main() {
+    return;
+  }
+
+  @Get('place/new')
+  @Render('write.ejs')
+  async write() {
+    return;
   }
 }
