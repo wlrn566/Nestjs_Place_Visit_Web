@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class PlaceDto {
+export class UserPlaceDto {
   @IsNotEmpty()
   place: string;
 

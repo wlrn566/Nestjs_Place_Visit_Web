@@ -15,4 +15,10 @@ export class ViewContoller {
   async write() {
     return;
   }
+
+  @Get('place/search')
+  @Render('search.popup.ejs')
+  async search() {
+    return;
+  }
 }

@@ -21,6 +21,14 @@
   <textarea id="review" cols="30" rows="5" maxlength="30" placeholder="30자 이내로 작성해주세요." onkeyup="count(this)"></textarea>
   <span id="counter">0 / 30</span>
 
+  
+
+  <h2>방문장소</h2>
+
+  <input type="button" value="장소 찾기" onclick="showPopup();"/>
+
+  <br/>
+
   <button id="finishBtn" onclick=post()>작성완료</button>
 
   <!-- <div id="map" style="height: 800px;"></div>
@@ -95,6 +103,10 @@
       }
     });
   }
+</script>
+
+<script>
+    function showPopup() { window.open("./search", "장소 검색", "width=800px, height=800px"); }
 </script>
 
 
