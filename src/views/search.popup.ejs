@@ -6,14 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c75543be0f25c55db7a17e8ae64d96ad&libraries=services"></script>
   <title>Document</title>
+
+  <style>
+    body {
+      margin: 0 auto;
+      width: 800px;
+      text-align: center;
+      background-color: rgb(251, 248, 235);
+    }
+    #map {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      height: 600px; 
+      width: 800px;
+    }
+
+    #addressDiv{
+      float: left; 
+      height: 100px;
+      width: 300px;
+    }
+
+    #btnDiv{
+      float: right; 
+      height: 100px;
+      width: 300px;
+    }
+
+    #address{
+      font-size: 1.5em;
+    }
+  </style>
 </head>
 
-<body onload="window.resizeTo(800,800)">
-
+<body>
   <h2>마커를 움직여서 장소를 찾아주세요.</h2>
-  <div id="map" style="height: 400px; width: 800px;"></div>
-  <p id="location"></p>
-  <p id="address"></p>
+  <div id="map"></div>
+  <div id="addressDiv">
+    <div id="address"></div>
+  </div>
+  <div id="btnDiv">
+    <button id="finishBtn" onclick=closePopUp()>확인</button>
+  </div>
   
 </body>
 
@@ -22,10 +56,11 @@
   var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
   var latitude = 35.1595454;
   var longitude = 126.8526012;
+  var latlng; // 위치 좌표
 
   var options = { // 기본 옵션
     center: new kakao.maps.LatLng(latitude, longitude),
-    level: 3
+    level: 4
   };
   var map = new kakao.maps.Map(container, options);
   
@@ -35,23 +70,28 @@
       position: markerPosition
   });
   marker.setMap(map); // 마커 표시
-  
-  kakao.maps.event.addListener(map, 'click', function(mouseEvent) {  // 지도 클릭 이벤트    
-    
-    var latlng = mouseEvent.latLng;  // 위치 좌표
+
+  kakao.maps.event.addListener(map, 'click', function(mouseEvent) {  // 지도 클릭 이벤트  
+    latlng = mouseEvent.latLng; // 위치 좌표
     marker.setPosition(latlng); // 마커를 클릭한 곳에 다시 표시해주기
-    document.getElementById('location').innerHTML = `선택 위치 : ${latlng.getLat()}, ${latlng.getLng()}` // 좌표 텍스트
     
     var coord = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
     geocoder.coord2Address(coord.getLng(), coord.getLat(), callback); // 주소변환
-
   });
 
   var callback = function(result, status) { // 주소변환 콜백 함수
     if (status === kakao.maps.services.Status.OK) {
-      document.getElementById('address').innerHTML = `선택 주소 : ${result[0].address.address_name}` // 주소 텍스트
+      document.getElementById('address').innerHTML = result[0].address.address_name; // 주소 텍스트
     }
   };
 
+  function closePopUp() {
+    opener.document.getElementById("address").innerHTML = document.getElementById("address").innerHTML;
+    opener.document.getElementById("latitude").value = latlng.getLat();
+    opener.document.getElementById("longitude").value = latlng.getLng();
+    window.close();
+  }
+  
 </script>
+
 </html>

@@ -4,113 +4,35 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link href="/main/sidenav.css" rel="stylesheet">
-  <link href="/main/title.css" rel="stylesheet">
-  <link href="/main/card.css" rel="stylesheet">
-  <link href="/main/loading.css" rel="stylesheet">
-
+  <link href="../main.css" rel="stylesheet">
+  <link href="../card.css" rel="stylesheet">
+  <link href="../loading.css" rel="stylesheet">
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c75543be0f25c55db7a17e8ae64d96ad"></script>
-  
   <title>방문</title>
 </head>
 
 <body>
-
   <button onclick=goToWritePage()>작성하기</button>
-
-  <!-- <div class="VirtualView">
-    <div class="hideMenuBody" id="hideMenuBodyId">
-      <div id="writeBtn" onclick=goToWrtiePage()>작성하기</div>
-      <div>내 정보</div>
-      <div>로그아웃</div>
-      <div onclick="closeLeftMenu(); return false;">Close</div>
-    </div>
-  
-    <div class="circleBt" id="circleBt" onclick="showLeftMenu(this); return false;">
-      <div style="margin-top: 13px;"></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div> -->
-
   <h2 class="title">나의 방문 기록</h2>
-
   <section class="card-list">
-    <div class="card">
-      <header>
-        <h3>2022/02/26</h3>
-        <h2>image</h2>
-      </header>
-      <main>
-        <h3>text</h3>
-      </main>
-    </div>
-    <div class="card">
-      <header>
-        <h3>2022/02/26</h3>
-        <h2>image</h2>
-      </header>
-      <main>
-        <h3>text</h3>
-      </main>
-    </div>
-    <div class="card">
-      <header>
-        <h3>2022/02/26</h3>
-        <h2>image</h2>
-      </header>
-      <main>
-        <h3>text</h3>
-      </main>
-    </div>
-    <div class="card">
-      <header>
-        <h3>2022/02/26</h3>
-        <h2>image</h2>
-      </header>
-      <main>
-        <h3>text</h3>
-      </main>
-    </div>
-    <div class="card">
-      <header>
-        <h3>2022/02/26</h3>
-        <h2>image</h2>
-      </header>
-      <main>
-        <h3>text</h3>
-      </main>
-    </div>
-    <div class="card">
-      <header>
-        <h3>2022/02/26</h3>
-        <h2>image</h2>
-      </header>
-      <main>
-        <h3>text</h3>
-      </main>
-    </div>
-    <div class="card">
-      <header>
-        <h3>2022/02/26</h3>
-        <h2>image</h2>
-      </header>
-      <main>
-        <h3>text</h3>
-      </main>
-    </div>
+    <% for (var i = 0; i < 5; i++) {%>
+      <div class="card">
+        <header>
+          <h3>2022/02/26</h3>
+          <h2>image</h2>
+        </header>
+        <main>
+          <h3>text</h3>
+        </main>
+      </div>
+    <% } %>
   </section>
-
   <div style="height: 20px"></div>
   <h2 class="title">주변 방문 기록</h2>
   <div style="height: 20px"></div>
-
   <div id="map" style="height: 800px;"></div>
   <div class="spinner"></div>
-
 </body>
-
 
 <script>
   var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스

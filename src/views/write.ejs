@@ -13,22 +13,20 @@
 
 <body>
 
-  <h2>장소</h2>
-  <input type="text", id="place">
+  <h2>타이틀</h2>
+  <input type="text", id="title">
+  <h2>방문장소</h2>
+  <input type="button" value="장소 찾기" onclick="showPopup();"/>
+  <input type="text" id="latitude" style="display: none"/>
+  <input type="text" id="longitude" style="display: none"/>
+
+  <div id="address"></div>
   <h2>방문일</h2>
   <input type="date", id="date">
   <h2>방문소감</h2>
   <textarea id="review" cols="30" rows="5" maxlength="30" placeholder="30자 이내로 작성해주세요." onkeyup="count(this)"></textarea>
   <span id="counter">0 / 30</span>
-
-  
-
-  <h2>방문장소</h2>
-
-  <input type="button" value="장소 찾기" onclick="showPopup();"/>
-
   <br/>
-
   <button id="finishBtn" onclick=post()>작성완료</button>
 
   <!-- <div id="map" style="height: 800px;"></div>
@@ -46,22 +44,31 @@
 
 <script>
   function post() {
-    var place = document.getElementById("place");
+    var title = document.getElementById("title");
     var date = document.getElementById("date");
     var review = document.getElementById("review");
+    var address = document.getElementById("address");
+    var latitude = document.getElementById("latitude");
+    var longitude = document.getElementById("longitude");
 
-    const placeValue = place.value;
+    const titleValue = title.value;
     const dataValue = date.value;
     const reviewValue = review.value;
+    const addressValue = address.innerHTML;
+    const latitudeValue = latitude.value;
+    const longitudeValue = longitude.value;
 
     // json 으로 보내기
     data = {
-      "place": placeValue,
+      "title": titleValue,
       "date": dataValue,
-      "review": reviewValue
+      "review": reviewValue,
+      "address": addressValue,
+      "latitude": latitudeValue,
+      "longitude": longitudeValue
     };
 
-    console.log(JSON.stringify({data}));
+    console.log(JSON.stringify(data, null, 2));
 
     // var req = new XMLHttpRequest(); // XMLHttpRequest 객체 생성
 
@@ -92,9 +99,10 @@
       data: data, // body 값
       success : function(data) {
         // 입력값 초기화
-        place.value = null;
-        data.value = null;
+        title.value = null;
+        date.value = null;
         review.value = null;
+        address.innerHTML = null;
         alert("등록 완료!");
       },
       error : function(req, status, error) {
@@ -106,7 +114,13 @@
 </script>
 
 <script>
-    function showPopup() { window.open("./search", "장소 검색", "width=800px, height=800px"); }
+  function showPopup() { 
+    const popupWidth = 800; 
+    const popupHeight = 800;
+    const popupX = (window.screen.width / 2) - (popupWidth / 2); // 가운데 정렬
+    const popupY= (window.screen.height / 2) - (popupHeight / 2);
+    window.open("./search", "장소 검색", `width=800px, height=800px, left=${popupX}, right=${popupY}`); 
+  }
 </script>
 
 

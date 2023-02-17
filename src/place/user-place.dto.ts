@@ -2,11 +2,20 @@ import { IsNotEmpty } from 'class-validator';
 
 export class UserPlaceDto {
   @IsNotEmpty()
-  place: string;
+  title: string;
 
   @IsNotEmpty()
   date: string;
 
   @IsNotEmpty()
   review: string;
+
+  @IsNotEmpty()
+  address: string;
+
+  @IsNotEmpty()
+  latitude: string;
+
+  @IsNotEmpty()
+  longitude: string;
 }
