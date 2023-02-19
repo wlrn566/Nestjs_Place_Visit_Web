@@ -23,8 +23,8 @@
   <div id="address"></div>
   <h2>방문일</h2>
   <input type="date", id="date">
-  <h2>방문소감</h2>
-  <textarea id="review" cols="30" rows="5" maxlength="30" placeholder="30자 이내로 작성해주세요." onkeyup="count(this)"></textarea>
+  <h2>내용</h2>
+  <textarea id="content" cols="30" rows="5" maxlength="30" placeholder="30자 이내로 작성해주세요." onkeyup="count(this)"></textarea>
   <span id="counter">0 / 30</span>
   <br/>
   <button id="finishBtn" onclick=post()>작성완료</button>
@@ -46,14 +46,14 @@
   function post() {
     var title = document.getElementById("title");
     var date = document.getElementById("date");
-    var review = document.getElementById("review");
+    var content = document.getElementById("content");
     var address = document.getElementById("address");
     var latitude = document.getElementById("latitude");
     var longitude = document.getElementById("longitude");
 
     const titleValue = title.value;
     const dataValue = date.value;
-    const reviewValue = review.value;
+    const contentValue = content.value;
     const addressValue = address.innerHTML;
     const latitudeValue = latitude.value;
     const longitudeValue = longitude.value;
@@ -62,7 +62,7 @@
     data = {
       "title": titleValue,
       "date": dataValue,
-      "review": reviewValue,
+      "content": contentValue,
       "address": addressValue,
       "latitude": latitudeValue,
       "longitude": longitudeValue
@@ -101,7 +101,7 @@
         // 입력값 초기화
         title.value = null;
         date.value = null;
-        review.value = null;
+        content.value = null;
         address.innerHTML = null;
         alert("등록 완료!");
       },

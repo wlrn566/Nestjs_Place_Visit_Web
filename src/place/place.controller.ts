@@ -1,15 +1,21 @@
-import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
-import { UserPlaceDto } from './user-place.dto';
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { UserPlace } from 'src/entities/user-place.entity';
 import { PlaceService } from './place.service';
+import { UserPlaceDto } from './user-place.dto';
 
 @Controller('place')
 export class PlaceController {
   constructor(private readonly placeService: PlaceService) {}
 
-  @Post('')
+  @Post()
   @UsePipes(ValidationPipe)
-  async addPlace(@Body() data: UserPlaceDto): Promise<string> {
-    console.log(data);
-    return await this.placeService.addPlace(data);
+  async createUserPlace(@Body() createUserPlaceDto: UserPlaceDto) {
+    console.log(createUserPlaceDto);
+    return await this.placeService.createUserPlace(createUserPlaceDto);
+  }
+
+  @Get()
+  getAllUserPlace(): Promise<UserPlace[]> {
+    return this.placeService.getAllUserPlace();
   }
 }

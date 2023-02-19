@@ -8,14 +8,14 @@ export class UserPlaceDto {
   date: string;
 
   @IsNotEmpty()
-  review: string;
+  content: string;
 
   @IsNotEmpty()
   address: string;
 
   @IsNotEmpty()
-  latitude: string;
+  latitude: number;
 
   @IsNotEmpty()
-  longitude: string;
+  longitude: number;
 }
