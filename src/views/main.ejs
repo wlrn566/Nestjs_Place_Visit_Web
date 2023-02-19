@@ -12,26 +12,30 @@
 </head>
 
 <body>
-  <button onclick=goToWritePage()>작성하기</button>
-  <h2 class="title">나의 방문 기록</h2>
-  <section class="place-list">
-    <% for (var i = 0; i < userPlaceData.length; i++) {%>
-      <div class="card">
-        <header>
-          <h3><%= userPlaceData[i].date %></h3>
-          <h2><%= userPlaceData[i].title %></h2>
-        </header>
-        <main>
-          <h3><%= userPlaceData[i].content %></h3>
-        </main>
-      </div>
-    <% } %>
-  </section>
-  <div style="height: 20px"></div>
-  <h2 class="title">주변 방문 기록</h2>
-  <div style="height: 20px"></div>
-  <div id="map" style="height: 800px;"></div>
-  <div class="spinner"></div>
+  <div id="mainDiv">
+    <h2 class="title">나의 방문 기록</h2>
+    <section class="place-list">
+      <% for (var i = 0; i < userPlaceData.length; i++) {%>
+        <div class="card">
+          <header>
+            <h3><%= userPlaceData[i].date %></h3>
+            <h2><%= userPlaceData[i].title %></h2>
+          </header>
+          <main>
+            <h3><%= userPlaceData[i].content %></h3>
+          </main>
+        </div>
+      <% } %>
+    </section>
+    <div style="height: 20px"></div>
+    <h2 class="title">주변 방문 기록</h2>
+    <div style="height: 20px"></div>
+    <div id="map"></div>
+    <div class="spinner"></div>
+  </div>
+  <div id="sideDiv">
+    <button class="custom-btn btn-13" onclick=goToWritePage()>기록하러 가기</button>
+  </div>
 </body>
 
 <script>
@@ -102,7 +106,7 @@
 
   function goToWritePage() {
     // closeLeftMenu();
-    location.href='/view/place/new';
+    location.href='/view/write';
   }
   
 </script>

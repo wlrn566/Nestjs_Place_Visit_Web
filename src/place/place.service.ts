@@ -16,6 +16,10 @@ export class PlaceService {
   }
 
   getAllUserPlace(): Promise<UserPlace[]> {
-    return this.userPlaceRepository.find();
+    return this.userPlaceRepository.find({
+      order: {
+        created_at: 'DESC',
+      },
+    });
   }
 }

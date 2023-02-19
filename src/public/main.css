@@ -1,8 +1,71 @@
 body {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
-  width: 800px;
   background-color: rgb(251, 248, 235);
+}
+
+#mainDiv {
+  margin-left: 100px;
+  width: 75%;
+  float: left; 
+}
+
+#sideDiv{
+  margin-top: 50px;
+  float: right; 
+}
+
+#map {
+  height: 800px;
+}
+
+button {
+  outline: none;
+}
+
+.custom-btn {
+  width: 200px;
+  height: 50px;
+  /* padding: 10px 25px; */
+  border: 2px solid #000;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.btn-13 {
+  background: #000;
+  color: #fff;
+  z-index: 1;
+}
+
+.btn-13:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.btn-13:hover {
+  color: #000;
+}
+
+.btn-13:hover:after {
+  top: 0;
+  height: 100%;
+}
+
+.btn-13:active {
+  top: 2px;
 }
 
 /* title */

@@ -4,33 +4,36 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link href="../write.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c75543be0f25c55db7a17e8ae64d96ad"></script>
   
   <title>방문</title>
 </head>
 
-<body>
-
-  <h2>타이틀</h2>
-  <input type="text", id="title">
-  <h2>방문장소</h2>
-  <input type="button" value="장소 찾기" onclick="showPopup();"/>
-  <input type="text" id="latitude" style="display: none"/>
-  <input type="text" id="longitude" style="display: none"/>
-
-  <div id="address"></div>
-  <h2>방문일</h2>
-  <input type="date", id="date">
-  <h2>내용</h2>
-  <textarea id="content" cols="30" rows="5" maxlength="30" placeholder="30자 이내로 작성해주세요." onkeyup="count(this)"></textarea>
-  <span id="counter">0 / 30</span>
+<body>  
+  <div class="areaDiv">
+    <h2>타이틀</h2>
+    <input type="text", id="title">
+  </div>
+  <div class="areaDiv">
+    <h2>방문장소</h2>
+    <a href="#" class="btn-two green rounded" onclick="showPopup();">장소 찾기</a>
+    <input type="text" id="latitude" style="display: none"/>
+    <input type="text" id="longitude" style="display: none"/>
+    <div id="address"></div>
+  </div>
+  <div class="areaDiv">
+    <h2>방문일</h2>
+    <input type="date", id="date">
+  </div>
+  <div class="areaDiv">
+    <h2>내용</h2>
+    <textarea id="content" cols="30" rows="5" maxlength="30" placeholder="30자 이내로 작성해주세요." onkeyup="count(this)"></textarea>
+    <span id="counter">0 / 30</span>
+  </div>
   <br/>
   <button id="finishBtn" onclick=post()>작성완료</button>
-
-  <!-- <div id="map" style="height: 800px;"></div>
-  <div class="spinner"></div> -->
 
 </body>
 
@@ -104,6 +107,7 @@
         content.value = null;
         address.innerHTML = null;
         alert("등록 완료!");
+        location.href = "/view/main";
       },
       error : function(req, status, error) {
         console.log(req.responseJSON['message'])
