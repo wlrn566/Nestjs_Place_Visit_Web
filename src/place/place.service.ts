@@ -15,11 +15,16 @@ export class PlaceService {
     return this.userPlaceRepository.save(createUserPlaceDto);
   }
 
-  getAllUserPlace(): Promise<UserPlace[]> {
-    return this.userPlaceRepository.find({
+  async getAllUserPlace(): Promise<UserPlace[]> {
+    const datas = await this.userPlaceRepository.find({
       order: {
         created_at: 'DESC',
       },
+    });
+    return Object.assign({
+      data: datas,
+      statusCode: 200,
+      statusMsg: `데이터 조회가 성공적으로 완료되었습니다.`,
     });
   }
 }

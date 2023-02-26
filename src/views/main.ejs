@@ -39,34 +39,49 @@
 </body>
 
 <script>
+  const parsedUserPlaceDatas = JSON.parse('<%- JSON.stringify(userPlaceData) %>'); 
+  const userPlaceData = parsedUserPlaceDatas['data'];
+  console.log(userPlaceData);
+
   var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
   showSpinner();
 
   // 위치 조회
   navigator.geolocation.getCurrentPosition((position) => {
-
-    console.log("latitude : " + position.coords.latitude);
-    console.log("longitude : " + position.coords.longitude);
-
+    
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
+
+    console.log("latitude : " + latitude);
+    console.log("longitude : " + longitude);
 
     var options = { //지도를 생성할 때 필요한 기본 옵션
       center: new kakao.maps.LatLng(latitude, longitude),
       level: 3 //지도의 레벨(확대, 축소 정도)
     };
     var map = new kakao.maps.Map(container, options);
+    
+    for (var i = 0; i < userPlaceData.length; i++) {
+      // 마커 위치
+      var markerPosition = new kakao.maps.LatLng(userPlaceData[i]['latitude'], userPlaceData[i]['longitude']);
+      // 마커 생성
+      var marker = new kakao.maps.Marker({
+        position: markerPosition
+      });
+      // 마커 표시
+      marker.setMap(map);
+    }
 
     // 마커가 표시될 위치입니다 
-    var markerPosition  = new kakao.maps.LatLng(latitude, longitude);
+    // markerPosition  = new kakao.maps.LatLng(latitude, longitude);
     
     // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        position: markerPosition
-    });
+    // var marker = new kakao.maps.Marker({
+    //     position: markerPosition[2]
+    // });
 
     // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
+    // marker.setMap(map);
 
     hideSpinner();
   });
@@ -84,30 +99,9 @@
 
 
 <script>
-	function showLeftMenu(){
-		var circleBtObj = document.getElementById('circleBt');
-		var leftMenuObj = document.getElementById('hideMenuBodyId');
-		circleBtObj.style['display'] = "none";
-		leftMenuObj.style['transform'] = "translate(0px, 0px)";
-		
-		leftMenuObj.style['msTransform'] = "translate(0px, 0px)";
-		leftMenuObj.style['mozTransform'] = "translate(0px, 0px)";
-		leftMenuObj.style['webkitTransform'] = "translate(0px, 0px)";
-		leftMenuObj.style['oTransform'] = "translate(0px, 0px)";
-	}
-
-	function closeLeftMenu() {
-		var circleBtObj = document.getElementById('circleBt');
-		var leftMenuObj = document.getElementById('hideMenuBodyId');
-
-		circleBtObj.style['display'] = "block";
-		leftMenuObj.removeAttribute("style");
-	}
-
   function goToWritePage() {
     // closeLeftMenu();
     location.href='/view/write';
   }
-  
 </script>
 </html>

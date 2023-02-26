@@ -11,7 +11,6 @@ export class ViewContoller {
   @Render('main.ejs')
   async main() {
     const userPlaceData = await this.placeService.getAllUserPlace();
-    console.log(userPlaceData);
     return { userPlaceData: userPlaceData };
   }
 
