@@ -40,8 +40,7 @@
 
 <script>
   const parsedUserPlaceDatas = JSON.parse('<%- JSON.stringify(userPlaceData) %>'); 
-  const userPlaceData = parsedUserPlaceDatas['data'];
-  console.log(userPlaceData);
+  console.log(parsedUserPlaceDatas);
 
   var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
   showSpinner();
@@ -57,34 +56,39 @@
 
     var options = { //지도를 생성할 때 필요한 기본 옵션
       center: new kakao.maps.LatLng(latitude, longitude),
-      level: 3 //지도의 레벨(확대, 축소 정도)
+      level: 5 //지도의 레벨(확대, 축소 정도)
     };
     var map = new kakao.maps.Map(container, options);
     
-    for (var i = 0; i < userPlaceData.length; i++) {
+    for (var i = 0; i < parsedUserPlaceDatas.length; i++) {
       // 마커 위치
-      var markerPosition = new kakao.maps.LatLng(userPlaceData[i]['latitude'], userPlaceData[i]['longitude']);
+      var markerPosition = new kakao.maps.LatLng(parsedUserPlaceDatas[i]['latitude'], parsedUserPlaceDatas[i]['longitude']);
+
       // 마커 생성
       var marker = new kakao.maps.Marker({
         position: markerPosition
       });
+    
       // 마커 표시
       marker.setMap(map);
     }
 
-    // 마커가 표시될 위치입니다 
-    // markerPosition  = new kakao.maps.LatLng(latitude, longitude);
-    
-    // 마커를 생성합니다
-    // var marker = new kakao.maps.Marker({
-    //     position: markerPosition[2]
-    // });
-
-    // 마커가 지도 위에 표시되도록 설정합니다
-    // marker.setMap(map);
-
     hideSpinner();
   });
+
+  // 인포윈도우 오픈 함수
+  function makeOverListener(map, marker, infowindow) {
+    return function() {
+        infowindow.open(map, marker);
+    };
+  }
+
+  // 인포윈도우 닫는 함수
+  function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
+  }
 
   // 로딩바 보이기
   function showSpinner() {
